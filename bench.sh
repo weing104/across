@@ -31,22 +31,7 @@ speed_test() {
     fi
 }
 
-speed_test_v6() {
-    speedtest=$(wget -6O /dev/null -T300 $1 2>&1 | awk '/\/dev\/null/ {speed=$3 $4} END {gsub(/\(|\)/,"",speed); print speed}')
-    ipaddress=$(ping6 -c1 -n `awk -F'/' '{print $3}' <<< $1` | awk -F'[()]' '{print $2;exit}')
-    nodeName=$2
-    if   [ "${#nodeName}" -lt "8" -a "${#ipaddress}" -eq "13" ]; then
-        echo -e "\e[33m$2\e[0m\t\t\t\t\e[32m$ipaddress\e[0m\t\t\e[31m$speedtest\e[0m"
-    elif [ "${#nodeName}" -lt "13" -a "${#ipaddress}" -eq "13" ]; then
-        echo -e "\e[33m$2\e[0m\t\t\t\e[32m$ipaddress\e[0m\t\t\e[31m$speedtest\e[0m"
-    elif [ "${#nodeName}" -lt "24" -a "${#ipaddress}" -eq "13" ]; then
-        echo -e "\e[33m$2\e[0m\t\t\e[32m$ipaddress\e[0m\t\t\e[31m$speedtest\e[0m"
-    elif [ "${#nodeName}" -lt "24" -a "${#ipaddress}" -gt "13" ]; then
-        echo -e "\e[33m$2\e[0m\t\t\e[32m$ipaddress\e[0m\t\e[31m$speedtest\e[0m"
-    elif [ "${#nodeName}" -ge "24" ]; then
-        echo -e "\e[33m$2\e[0m\t\e[32m$ipaddress\e[0m\t\e[31m$speedtest\e[0m"
-    fi
-}
+
 
 speed() {
     speed_test 'http://cachefly.cachefly.net/100mb.test' 'CacheFly'
@@ -62,18 +47,7 @@ speed() {
     speed_test 'http://speedtest.hkg02.softlayer.com/downloads/test100.zip' 'Softlayer, HongKong, CN'
 }
 
-speed_v6() {
-    speed_test_v6 'http://speedtest.atlanta.linode.com/100MB-atlanta.bin' 'Linode, Atlanta, GA'
-    speed_test_v6 'http://speedtest.dallas.linode.com/100MB-dallas.bin' 'Linode, Dallas, TX'
-    speed_test_v6 'http://speedtest.newark.linode.com/100MB-newark.bin' 'Linode, Newark, NJ'
-    speed_test_v6 'http://speedtest.singapore.linode.com/100MB-singapore.bin' 'Linode, Singapore, SG'
-    speed_test_v6 'http://speedtest.tokyo.linode.com/100MB-tokyo.bin' 'Linode, Tokyo, JP'
-    speed_test_v6 'http://speedtest.sjc03.softlayer.com/downloads/test100.zip' 'Softlayer, San Jose, CA'
-    speed_test_v6 'http://speedtest.wdc01.softlayer.com/downloads/test100.zip' 'Softlayer, Washington, WA'
-    speed_test_v6 'http://speedtest.par01.softlayer.com/downloads/test100.zip' 'Softlayer, Paris, FR'
-    speed_test_v6 'http://speedtest.sng01.softlayer.com/downloads/test100.zip' 'Softlayer, Singapore, SG'
-    speed_test_v6 'http://speedtest.tok02.softlayer.com/downloads/test100.zip' 'Softlayer, Tokyo, JP'
-}
+
 
 io_test() {
     (LANG=en_US dd if=/dev/zero of=test_$$ bs=64k count=16k conv=fdatasync && rm -f test_$$ ) 2>&1 | awk -F, '{io=$NF} END { print io}' | sed 's/^[ \t]*//;s/[ \t]*$//'
@@ -108,9 +82,7 @@ next
 if  [ -e '/usr/bin/wget' ]; then
     echo -e "Node Name\t\t\tIPv4 address\t\tDownload Speed"
     speed && next
-    if [[ "$ipv6" != "" ]]; then
-        echo -e "Node Name\t\t\tIPv6 address\t\tDownload Speed"
-        speed_v6 && next
+
     fi
 else
     echo "Error: wget command not found. You must be install wget command at first."
