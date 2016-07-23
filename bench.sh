@@ -56,7 +56,6 @@ if  [ -e '/usr/bin/wget' ]; then
     freq=$( awk -F: '/cpu MHz/ {freq=$2} END {print freq}' /proc/cpuinfo | sed 's/^[ \t]*//;s/[ \t]*$//' )
     tram=$( free -m | awk '/Mem/ {print $2}' )
     swap=$( free -m | awk '/Swap/ {print $2}' )
-    up=$( awk '{a=$1/86400;b=($1%86400)/3600;c=($1%3600)/60;d=$1%60} {printf("%ddays, %d:%d:%d\n",a,b,c,d)}' /proc/uptime )
     load=$( uptime | awk -F: '{print $5}' | sed 's/^[ \t]*//;s/[ \t]*$//' )
     opsy=$( get_opsy )
     arch=$( uname -m )
