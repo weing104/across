@@ -30,39 +30,35 @@ speed_test() {
         echo -e "\e[33m$2\e[0m\t\e[32m$ipaddress\e[0m\t\t\e[31m$speedtest\e[0m"
     fi
 }
-
-
-
 speed() {
     speed_test 'http://cachefly.cachefly.net/100mb.test' 'CacheFly'
     speed_test 'http://speedtest.tokyo.linode.com/100MB-tokyo.bin' 'Linode, Tokyo, JP'
-    speed_test 'http://speedtest.singapore.linode.com/100MB-singapore.bin' 'Linode, Singapore, SG
-    speed_test 'http://speedtest.tok02.softlayer.com/downloads/test100.zip' 'Softlayer, Tokyo, JP'
+    speed_test 'http://speedtest.singapore.linode.com/100MB-singapore.bin' 'Linode, Singapore, SG'
+    speed_test 'http://speedtest.london.linode.com/100MB-london.bin' 'Linode, London, UK'
+    speed_test 'http://speedtest.frankfurt.linode.com/100MB-frankfurt.bin' 'Linode, Frankfurt, DE'
+    speed_test 'http://speedtest.fremont.linode.com/100MB-fremont.bin' 'Linode, Fremont, CA'
+    speed_test 'http://speedtest.dal05.softlayer.com/downloads/test100.zip' 'Softlayer, Dallas, TX'
+    speed_test 'http://speedtest.sea01.softlayer.com/downloads/test100.zip' 'Softlayer, Seattle, WA'
+    speed_test 'http://speedtest.fra02.softlayer.com/downloads/test100.zip' 'Softlayer, Frankfurt, DE'
     speed_test 'http://speedtest.sng01.softlayer.com/downloads/test100.zip' 'Softlayer, Singapore, SG'
     speed_test 'http://speedtest.hkg02.softlayer.com/downloads/test100.zip' 'Softlayer, HongKong, CN'
-    speed_test 'http://mirror.sg.leaseweb.net/speedtest/100mb.bin' 'Leaseweb, Singapore, SG'
-    speed_test 'http://mirror.hk.leaseweb.net/speedtest/100mb.bin' 'Leaseweb, HongKong, CN'
 }
-
-
-
 io_test() {
     (LANG=en_US dd if=/dev/zero of=test_$$ bs=64k count=16k conv=fdatasync && rm -f test_$$ ) 2>&1 | awk -F, '{io=$NF} END { print io}' | sed 's/^[ \t]*//;s/[ \t]*$//'
 }
-
 if  [ -e '/usr/bin/wget' ]; then
     cname=$( awk -F: '/model name/ {name=$2} END {print name}' /proc/cpuinfo | sed 's/^[ \t]*//;s/[ \t]*$//' )
     cores=$( awk -F: '/model name/ {core++} END {print core}' /proc/cpuinfo )
     freq=$( awk -F: '/cpu MHz/ {freq=$2} END {print freq}' /proc/cpuinfo | sed 's/^[ \t]*//;s/[ \t]*$//' )
     tram=$( free -m | awk '/Mem/ {print $2}' )
     swap=$( free -m | awk '/Swap/ {print $2}' )
+    up=$( awk '{a=$1/86400;b=($1%86400)/3600;c=($1%3600)/60;d=$1%60} {printf("%ddays, %d:%d:%d\n",a,b,c,d)}' /proc/uptime )
     load=$( uptime | awk -F: '{print $5}' | sed 's/^[ \t]*//;s/[ \t]*$//' )
     opsy=$( get_opsy )
     arch=$( uname -m )
     lbit=$( getconf LONG_BIT )
     host=$( hostname )
     kern=$( uname -r )
-
     clear
     next
     echo "CPU model            : $cname"
@@ -76,14 +72,12 @@ if  [ -e '/usr/bin/wget' ]; then
     echo "Arch                 : $arch ($lbit Bit)"
     echo "Kernel               : $kern"
     next
-
     echo -e "Node Name\t\t\tIPv4 address\t\tDownload Speed"
     speed && next
 else
     echo "Error: wget command not found. You must be install wget command at first."
     exit 1
 fi
-
 io1=$( io_test )
 io2=$( io_test )
 io3=$( io_test )
