@@ -1,7 +1,8 @@
 iplise=(222.86.174.1 58.16.115.1 39.135.10.1)
 iplocal=(黔南电信 黔南联通 黔南移动)
-echo "开始下载besttrace..."
-wget -N --no-check-certificate https://raw.githubusercontent.com/weing104/across/master/besttrace && chmod +x besttrace
+if [ ! -f "besttrace" ]; then
+	wget -N --no-check-certificate https://raw.githubusercontent.com/weing104/across/master/besttrace && chmod +x besttrace
+	fi
 clear
 echo -e "\n正在测试,请稍等..."
 echo -e "——————————————————————————————\n"
