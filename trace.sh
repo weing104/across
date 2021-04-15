@@ -1,12 +1,12 @@
-iplise=(222.86.174.1 58.16.115.1 39.135.10.1)
-iplocal=(黔南电信 黔南联通 黔南移动)
+iplise=(180.149.128.1 180.153.28.1 113.108.209.1 123.125.99.1 58.247.0.49 210.21.4.130 211.136.25.153 221.183.55.22 211.139.129.5)
+iplocal=(北京电信 上海电信 广州电信 北京联通 上海联通 广州联通 北京移动 上海移动 广州移动)
 if [ ! -f "besttrace" ]; then
 	wget -N --no-check-certificate https://raw.githubusercontent.com/weing104/across/master/besttrace && chmod +x besttrace
 	fi
 clear
 echo -e "\n正在测试,请稍等..."
 echo -e "——————————————————————————————\n"
-for i in {0..2}; do
+for i in {0..8}; do
 	./besttrace -q1 ${iplise[i]} > /root/traceroute_testlog
 	grep -q "223\.120\."  /root/traceroute_testlog
 	if [ $? == 0 ];then
