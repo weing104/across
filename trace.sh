@@ -8,7 +8,7 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/weing104/across
 clear
 echo -e "\n正在测试,请稍等..."
 echo -e "——————————————————————————————\n"
-for i in {0..8}; do
+for i in {0..2}; do
 	./besttrace -q1 ${iplise[i]} > /root/traceroute_testlog
 	grep -q "59\.43\." /root/traceroute_testlog
 	if [ $? == 0 ];then
