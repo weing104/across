@@ -22,7 +22,7 @@ for i in {0..5}; do
 			else
 				grep -q "219\.158\.113\."  /root/traceroute_testlog
 				if [ $? == 0 ];then
-					grep -q "23\.255\."  /root/traceroute_testlog
+					grep -q "23\.225\."  /root/traceroute_testlog
 					if [ $? == 0 ];then
 						echo -e "目标:${iplocal[i]}[${iplise[i]}]\t回程线路:\033[1;33m联通4837\033[0m"
 					else
@@ -31,7 +31,7 @@ for i in {0..5}; do
 				else
 					grep -q "219\.158\.116\."  /root/traceroute_testlog
 					if [ $? == 0 ];then
-					grep -q "23\.255\."  /root/traceroute_testlog
+					grep -q "23\.225\."  /root/traceroute_testlog
 						if [ $? == 0 ];then
 							echo -e "目标:${iplocal[i]}[${iplise[i]}]\t回程线路:\033[1;33m联通4837\033[0m"
 						else
