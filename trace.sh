@@ -21,6 +21,8 @@ for i in {0..8}; do
 				grep -q "222\.183\."  /root/traceroute_testlog
 				if [ $? == 0 ];then
 					echo -e "目标:${iplocal[i]}[${iplise[i]}]\t回程线路:\033[1;32m电信CN2GIA\033[0m"
+				else
+					echo -e "目标:${iplocal[i]}[${iplise[i]}]\t回程线路:\033[1;31m电信CN2GT\033[0m"
 				fi
 			else
 				grep -q "59\.43\." /root/traceroute_testlog
@@ -28,6 +30,8 @@ for i in {0..8}; do
 					grep -q "222\.176\."  /root/traceroute_testlog
 					if [ $? == 0 ];then
 						echo -e "目标:${iplocal[i]}[${iplise[i]}]\t回程线路:\033[1;32m电信CN2GIA\033[0m"
+					else
+						echo -e "目标:${iplocal[i]}[${iplise[i]}]\t回程线路:\033[1;31m电信CN2GT\033[0m"
 					fi
 				else
 					grep -q "59\.43\." /root/traceroute_testlog
@@ -35,6 +39,8 @@ for i in {0..8}; do
 						grep -q "219\.158\."  /root/traceroute_testlog
 						if [ $? == 0 ];then
 							echo -e "目标:${iplocal[i]}[${iplise[i]}]\t回程线路:\033[1;32m电信CN2GIA\033[0m"
+						else
+							echo -e "目标:${iplocal[i]}[${iplise[i]}]\t回程线路:\033[1;31m电信CN2GT\033[0m"
 						fi
 					else
 						grep -q "59\.43\." /root/traceroute_testlog
@@ -51,6 +57,8 @@ for i in {0..8}; do
 								grep -q "219\.158\.113\." /root/traceroute_testlog
 								if [ $? == 0 ];then
 									echo -e "目标:${iplocal[i]}[${iplise[i]}]\t回程线路:\033[1;33m联通4837\033[0m"
+								else
+									echo -e "目标:${iplocal[i]}[${iplise[i]}]\t回程线路:\033[1;33m联通169\033[0m"
 								fi
 							else
 								grep -q "219\.158\."  /root/traceroute_testlog
@@ -58,6 +66,8 @@ for i in {0..8}; do
 									grep -q "219\.158\.116\." /root/traceroute_testlog
 									if [ $? == 0 ];then
 										echo -e "目标:${iplocal[i]}[${iplise[i]}]\t回程线路:\033[1;33m联通4837\033[0m"
+									else
+										echo -e "目标:${iplocal[i]}[${iplise[i]}]\t回程线路:\033[1;33m联通169\033[0m"
 									fi
 								else
 									grep -q "219\.158\."  /root/traceroute_testlog
@@ -79,5 +89,5 @@ for i in {0..8}; do
 	fi
 echo 
 done
+echo -e "——————————————————————————————\n"
 rm -f /root/traceroute_testlog
-echo -e "\n——————————————————————————————\n本脚本测试结果为TCP回程路由,非ICMP回程路由 仅供参考 谢谢\n"
