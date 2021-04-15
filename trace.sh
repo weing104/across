@@ -7,7 +7,7 @@ clear
 echo -e "\n正在测试,请稍等..."
 echo -e "——————————————————————————————\n"
 for i in {0..8}; do
-	./besttrace -q1 ${iplise[i]} > /root/traceroute_testlog
+	mtr -r --n --tcp ${iplise[i]} > /root/traceroute_testlog
 	grep -q "223\.120\."  /root/traceroute_testlog
 	if [ $? == 0 ];then
 		echo -e "目标:${iplocal[i]}[${iplise[i]}]\t回程线路:\033[1;35m移动CMI\033[0m"
