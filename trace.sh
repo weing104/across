@@ -16,67 +16,62 @@ for i in {0..8}; do
 		if [ $? == 0 ];then
 			echo -e "目标:${iplocal[i]}[${iplise[i]}]\t回程线路:\033[1;33m联通9929\033[0m"
 		else
-			grep -q "59\.43\." /root/traceroute_testlog
+			grep -q "203\.160\."  /root/traceroute_testlog
 			if [ $? == 0 ];then
-				grep -q "222\.183\."  /root/traceroute_testlog
-				if [ $? == 0 ];then
-					echo -e "目标:${iplocal[i]}[${iplise[i]}]\t回程线路:\033[1;32m电信CN2GIA\033[0m"
-				else
-					echo -e "目标:${iplocal[i]}[${iplise[i]}]\t回程线路:\033[1;32m电信CN2GIA\033[0m"
-				fi
+				echo -e "目标:${iplocal[i]}[${iplise[i]}]\t回程线路:\033[1;33m联通香港\033[0m"
 			else
-				grep -q "59\.43\." /root/traceroute_testlog
+				grep -q "219\.158\.113\."  /root/traceroute_testlog
 				if [ $? == 0 ];then
-					grep -q "222\.176\."  /root/traceroute_testlog
-					if [ $? == 0 ];then
-						echo -e "目标:${iplocal[i]}[${iplise[i]}]\t回程线路:\033[1;32m电信CN2GIA\033[0m"
-					else
-						echo -e "目标:${iplocal[i]}[${iplise[i]}]\t回程线路:\033[1;32m电信CN2GIA\033[0m"
-					fi
+					echo -e "目标:${iplocal[i]}[${iplise[i]}]\t回程线路:\033[1;33m联通4837\033[0m"
 				else
-					grep -q "59\.43\." /root/traceroute_testlog
+					grep -q "219\.158\.116\."  /root/traceroute_testlog
 					if [ $? == 0 ];then
-						grep -q "219\.158\."  /root/traceroute_testlog
-						if [ $? == 0 ];then
-							echo -e "目标:${iplocal[i]}[${iplise[i]}]\t回程线路:\033[1;32m电信CN2GIA\033[0m"
-						else
-							echo -e "目标:${iplocal[i]}[${iplise[i]}]\t回程线路:\033[1;32m电信CN2GIA\033[0m"
-						fi
+						echo -e "目标:${iplocal[i]}[${iplise[i]}]\t回程线路:\033[1;33m联通4837\033[0m"
 					else
-						grep -q "59\.43\." /root/traceroute_testlog
+						grep -q "222\.183\." /root/traceroute_testlog
 						if [ $? == 0 ];then
-							grep -q "202\.97\."  /root/traceroute_testlog
+							grep -q "59\.43\."  /root/traceroute_testlog
 							if [ $? == 0 ];then
-								echo -e "目标:${iplocal[i]}[${iplise[i]}]\t回程线路:\033[1;32m电信CN2GT\033[0m"
-								else
-								echo -e "目标:${iplocal[i]}[${iplise[i]}]\t回程线路:\033[1;31m电信CN2GIA\033[0m"
+								echo -e "目标:${iplocal[i]}[${iplise[i]}]\t回程线路:\033[1;32m电信CN2GIA\033[0m"
+							else
+								echo -e "目标:${iplocal[i]}[${iplise[i]}]\t回程线路:\033[1;36m其他\033[0m"
 							fi
 						else
-							grep -q "219\.158\."  /root/traceroute_testlog
+							grep -q "222\.176\." /root/traceroute_testlog
 							if [ $? == 0 ];then
-								grep -q "219\.158\.113\." /root/traceroute_testlog
+								grep -q "59\.43\."  /root/traceroute_testlog
 								if [ $? == 0 ];then
-									echo -e "目标:${iplocal[i]}[${iplise[i]}]\t回程线路:\033[1;33m联通4837\033[0m"
+									echo -e "目标:${iplocal[i]}[${iplise[i]}]\t回程线路:\033[1;32m电信CN2GIA\033[0m"
 								else
-									echo -e "目标:${iplocal[i]}[${iplise[i]}]\t回程线路:\033[1;33m联通4837\033[0m"
+									echo -e "目标:${iplocal[i]}[${iplise[i]}]\t回程线路:\033[1;36m其他\033[0m"
 								fi
 							else
-								grep -q "219\.158\."  /root/traceroute_testlog
+								grep -q "59\.43\." /root/traceroute_testlog
 								if [ $? == 0 ];then
-									grep -q "219\.158\.116\." /root/traceroute_testlog
+									grep -q "202\.97\."  /root/traceroute_testlog
 									if [ $? == 0 ];then
-										echo -e "目标:${iplocal[i]}[${iplise[i]}]\t回程线路:\033[1;33m联通4837\033[0m"
+										echo -e "目标:${iplocal[i]}[${iplise[i]}]\t回程线路:\033[1;32m电信CN2GT\033[0m"
 									else
-										echo -e "目标:${iplocal[i]}[${iplise[i]}]\t回程线路:\033[1;33m联通4837\033[0m"
+										echo -e "目标:${iplocal[i]}[${iplise[i]}]\t回程线路:\033[1;31m电信CN2GIA\033[0m"
 									fi
 								else
-									grep -q "219\.158\."  /root/traceroute_testlog
+									grep -q "202\.97\."  /root/traceroute_testlog
 									if [ $? == 0 ];then
-										echo -e "目标:${iplocal[i]}[${iplise[i]}]\t回程线路:\033[1;33m联通169\033[0m"
-									else
-										grep -q "202\.97\."  /root/traceroute_testlog
+										grep -q "219\.158\." /root/traceroute_testlog
 										if [ $? == 0 ];then
+											echo -e "目标:${iplocal[i]}[${iplise[i]}]\t回程线路:\033[1;33m联通169\033[0m"
+										else
 											echo -e "目标:${iplocal[i]}[${iplise[i]}]\t回程线路:\033[1;34m电信163\033[0m"
+										fi
+									else			
+										grep -q "219\.158\." /root/traceroute_testlog
+										if [ $? == 0 ];then
+											grep -q "59\.43\."  /root/traceroute_testlog
+											if [ $? == 0 ];then
+												echo -e "目标:${iplocal[i]}[${iplise[i]}]\t回程线路:\033[1;32m电信CN2GIA\033[0m"
+											else
+												echo -e "目标:${iplocal[i]}[${iplise[i]}]\t回程线路:\033[1;33m联通169\033[0m"
+											fi
 										fi
 									fi
 								fi
@@ -89,5 +84,5 @@ for i in {0..8}; do
 	fi
 echo 
 done
-echo -e "——————————————————————————————\nWritten by weing104\n"
+echo -e "——————————————————————————————\n"
 rm -f /root/traceroute_testlog
