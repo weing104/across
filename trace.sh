@@ -89,5 +89,5 @@ for i in {0..8}; do
 	fi
 echo 
 done
-echo -e "——————————————————————————————\n"
+echo -e "——————————————————————————————\nWritten by weing104\n"
 rm -f /root/traceroute_testlog
