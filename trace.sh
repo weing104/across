@@ -1,6 +1,3 @@
-echo -e "\n该小工具用于测试本服务器到黔南三网的[回程网络]类型\n"
-read -p "按Enter(回车)开始启动检查..." sdad
-
 iplise=(222.86.174.1 58.16.115.1 39.135.10.1)
 iplocal=(黔南电信 黔南联通 黔南移动)
 echo "开始下载besttrace..."
@@ -63,5 +60,5 @@ for i in {0..2}; do
 	fi
 echo 
 done
+echo -e "——————————————————————————————\n"
 rm -f /root/traceroute_testlog
-echo -e "\n——————————————————————————————\n本脚本测试结果为ICMP回程路由,非TCP回程路由 仅供参考 谢谢\n"
